@@ -1,6 +1,41 @@
 @layout("layouts/app")
+
+@section("title")
+Show All Sneakers
+@endsection
+
+
 @section("content")
 
 <h1>Show all Sneakers!</h1>
+<div class="links">
+    <nav>
+        <a href="/sneakers/create">Add a Sneaker</a>
+    </nav>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+             <th>title</th>
+              <th>action</th>
+        </tr>
+    </thead>
+     <thead>
+       <tbody>
+           @each(sneaker in allSneakers)
+            <tr>
+            <th>{{sneaker.id}}</th>
+             <th>{{sneaker.title}}</th>
+              <th>
+                  <a href="/sneakers/{{sneaker.id}}/edit">Edit</a>
+                    <a href="/sneakers/{{sneaker.id}}/delete">Delete</a>
+            </th>
+        </tr>
+        @endeach
+       </tbody>
+    </thead>
+</table>
 
 @endsection
