@@ -1,26 +1,23 @@
-<h1>Show All Sneaker Page!</h1>
-<div class="links">
-    <nav>
-        <a href="/sneakers/create" class="add">Add a sneaker</a>
-       
-    </nav>
+@layout("layouts/app")
+
+@section("title")
+Show 1 Sneaker Page
+@endsection
+
+
+@section("content")
+
+<h1>Show Page</h1>
+
+<div class="show-page">
+    <div class="img">
+        <h2>Yeezy Boost</h2>
+        <img 
+        src="https://th.bing.com/th/id/OIP.EPBeWBTrpdFO9MDSryt4nwHaEK?w=300&h=168&c=7&o=5&pid=1.7" alt="">
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto nemo nobis quod, quos id, sapiente eos debitis porro perferendis quidem quis voluptatibus maxime itaque, suscipit 
+        doloremque illum enim nesciunt dicta veniam tempore tenetur eum.
+         Exercitationem odio repellendus consequuntur, quibusdam, tempore aut dignissimos id iure hic dolorem excepturi ab sapiente a?</p>
+    </div>
 </div>
 
-
-<table>
-    <thead>
-            <tr>
-                <th>id </th>
-                <th>title </th>
-                <th>actions </th>
-            </tr>
-    </thead>
-     <tbody>
-            <tr>
-                <td>id </td>
-                <td>title </td>
-                <td>actions </td>
-            </tr>
-        
-    </tbody>
-</table>
+@endsection
