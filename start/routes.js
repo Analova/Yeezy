@@ -16,7 +16,7 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use("Route");
 
-Route.on("/").render("welcome");
+Route.get("/", "SneakerController.index");
 Route.get("/sneakers", "SneakerController.index");
 Route.get("/sneakers/create", "SneakerController.create");
 Route.post("/sneakers", "SneakerController.store");

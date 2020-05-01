@@ -1,25 +1,25 @@
 "use strict";
 
 class SneakerController {
-  async index() {
-    return "All sneakers page";
+  async index({ view }) {
+    return view.render("sneakers/index");
   }
-  async create() {
-    return "Show create page";
+  async create({ view }) {
+    return view.render("sneakers/create");
   }
-  async store() {
+  async store({ view }) {
     return "Save 1 sneaker page";
   }
-  async show() {
-    return "Show  page for the 1 sneaker";
+  async show({ view }) {
+    return view.render("sneakers/show");
   }
-  async eidt() {
-    return "Edit page for the 1 sneaker";
+  async eidt({ view }) {
+    return view.render("sneakers/edit");
   }
-  async update() {
+  async update({ view }) {
     return "Upddate page for the 1 sneaker";
   }
-  async destroy() {
+  async destroy({ view }) {
     return "Delete sneakers";
   }
 }
