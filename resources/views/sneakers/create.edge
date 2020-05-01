@@ -8,6 +8,7 @@ Create Sneakers Page
 <h1>Create Sneakers Page</h1>
 
 <form action="/sneakers" method="POST">
+  {{csrfField()}}
   <div class="form-group">
     <label>Title</label>
     <input type="text" name="title">

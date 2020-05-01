@@ -1,4 +1,5 @@
 "use strict";
+const Sneaker = use("App/Models/Sneaker");
 
 class SneakerController {
   async index({ view }) {
@@ -7,8 +8,21 @@ class SneakerController {
   async create({ view }) {
     return view.render("sneakers/create");
   }
-  async store({ view }) {
-    return "Save 1 sneaker page";
+  async store({ request, view }) {
+    try {
+      const sneaker = new Sneaker();
+      const data = request.post();
+
+      sneaker.title = data.title;
+      sneaker.image = data.image;
+      sneaker.description = data.description;
+
+      await sneaker.save();
+      return "Saved to database";
+    } catch (error) {
+      console.log(error);
+      return "Sorry there was an error check console";
+    }
   }
   async show({ view }) {
     return view.render("sneakers/show");
