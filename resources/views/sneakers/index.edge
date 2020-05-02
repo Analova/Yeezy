@@ -27,10 +27,14 @@ Show All Sneakers
            @each(sneaker in allSneakers)
             <tr>
             <th>{{sneaker.id}}</th>
-             <th>{{sneaker.title}}</th>
+             <th> <a href="/sneakers/{{sneaker.id}}">{{sneaker.title}}</a></th>
               <th>
                   <a href="/sneakers/{{sneaker.id}}/edit">Edit</a>
-                    <a href="/sneakers/{{sneaker.id}}/delete">Delete</a>
+                  <form action="/sneakers/{{sneaker.id}}?_method=DELETE" method="POST">
+                   {{csrfField()}}
+                    <input  type="submit" value="delete"></input>
+                  </form>
+                   
             </th>
         </tr>
         @endeach

@@ -84,8 +84,17 @@ class SneakerController {
     }
   }
 
-  async destroy({ view }) {
-    return "Delete sneakers";
+  async destroy({ view, request, response }) {
+    try {
+      const postData = request.post();
+      const sneaker = await Sneaker.find(request.params.id);
+
+      sneaker.delete();
+      return response.redirect("back");
+    } catch (error) {
+      console.log(error);
+      return "Sorry there was an error check console";
+    }
   }
 }
 
