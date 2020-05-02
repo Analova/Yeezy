@@ -3,14 +3,19 @@ const Sneaker = use("App/Models/Sneaker");
 
 class SneakerController {
   async index({ view }) {
-    let allSneakers = await Sneaker.all();
-    allSneakers = allSneakers.toJSON();
-    //console.log(allSneakers.toJSON());
-    let viewData = {
-      allSneakers,
-    };
-    //console.log(viewData);
-    return view.render("sneakers/index", viewData);
+    try {
+      let allSneakers = await Sneaker.all();
+      allSneakers = allSneakers.toJSON();
+      //console.log(allSneakers.toJSON());
+      let viewData = {
+        allSneakers,
+      };
+      //console.log(viewData);
+      return view.render("sneakers/index", viewData);
+    } catch (error) {
+      console.log(error);
+      return "Sorry there was an error check console";
+    }
   }
 
   async create({ view }) {
@@ -34,29 +39,49 @@ class SneakerController {
     }
   }
 
-  async show({ view }) {
-    return view.render("sneakers/show");
+  async show({ view, request }) {
+    try {
+      const sneaker = await Sneaker.find(request.params.id);
+      let viewData = {
+        sneaker: sneaker.toJSON(),
+      };
+      //console.log(viewData);
+      return view.render("sneakers/show", viewData);
+    } catch (error) {
+      console.log(error);
+      return "Sorry there was an error check console";
+    }
   }
 
   async edit({ view, request }) {
-    const sneaker = await Sneaker.find(request.params.id);
-    let viewData = {
-      sneaker: sneaker.toJSON(),
-    };
-    //console.log(viewData);
-    return view.render("sneakers/edit", viewData);
+    try {
+      const sneaker = await Sneaker.find(request.params.id);
+      let viewData = {
+        sneaker: sneaker.toJSON(),
+      };
+      //console.log(viewData);
+      return view.render("sneakers/edit", viewData);
+    } catch (error) {
+      console.log(error);
+      return "Sorry there was an error check console";
+    }
   }
 
   async update({ request, view, response }) {
-    const postData = request.post();
-    const sneaker = await Sneaker.find(request.params.id);
-    sneaker.title = postData.title;
-    sneaker.image = postData.image;
-    sneaker.description = postData.description;
-    sneaker.save();
-    console.log(sneaker.toJSON());
-    //console.log(request.post());
-    response.redirect("/");
+    try {
+      const postData = request.post();
+      const sneaker = await Sneaker.find(request.params.id);
+      sneaker.title = postData.title;
+      sneaker.image = postData.image;
+      sneaker.description = postData.description;
+      sneaker.save();
+      console.log(sneaker.toJSON());
+      //console.log(request.post());
+      response.redirect("/");
+    } catch (error) {
+      console.log(error);
+      return "Sorry there was an error check console";
+    }
   }
 
   async destroy({ view }) {
