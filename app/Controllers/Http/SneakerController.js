@@ -9,7 +9,7 @@ class SneakerController {
     let viewData = {
       allSneakers,
     };
-    console.log(viewData);
+    //console.log(viewData);
     return view.render("sneakers/index", viewData);
   }
 
@@ -33,15 +33,32 @@ class SneakerController {
       return "Sorry there was an error check console";
     }
   }
+
   async show({ view }) {
     return view.render("sneakers/show");
   }
-  async edit({ view }) {
-    return view.render("sneakers/edit");
+
+  async edit({ view, request }) {
+    const sneaker = await Sneaker.find(request.params.id);
+    let viewData = {
+      sneaker: sneaker.toJSON(),
+    };
+    //console.log(viewData);
+    return view.render("sneakers/edit", viewData);
   }
-  async update({ view }) {
-    return "Upddate page for the 1 sneaker";
+
+  async update({ request, view, response }) {
+    const postData = request.post();
+    const sneaker = await Sneaker.find(request.params.id);
+    sneaker.title = postData.title;
+    sneaker.image = postData.image;
+    sneaker.description = postData.description;
+    sneaker.save();
+    console.log(sneaker.toJSON());
+    //console.log(request.post());
+    response.redirect("/");
   }
+
   async destroy({ view }) {
     return "Delete sneakers";
   }
